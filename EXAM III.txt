@@ -1,0 +1,140 @@
+public static void main(String[] args) throws Exception {
+        System.out.println(mayor(1,2));
+        System.out.println(menor(1,2));
+        System.out.println(mayorAux(1,2,3,4));
+        System.out.println(mayorAux(1,2,3));
+        System.out.println(mayorAnd(1,2,3,4));
+        System.out.println(mayorDep(1,2,3,4));
+
+        System.out.println(segMayor(1,2,3));
+        System.out.println(segMayor(1,2,3,4));
+        System.out.println(segMenor(1,2,3));
+        System.out.println(tercMayor(1,2,3,4));
+        System.out.println(tercMenor(1,2,3,4));
+
+    }
+
+    // may men
+    // 1
+    public static int mayor(int a, int b) {
+        int may = a;
+        if (b > a)
+            may = b;
+        return may;
+    }
+
+    public static int menor(int a, int b) {
+        int may = a;
+        if (b < a)
+            may = b;
+        return may;
+    }
+
+    // 1
+    public static int mayorAux(int a, int b, int c, int d) {
+        int may = a;
+        if (b > a)
+            may = b;
+        if (b > may)
+            may = b;
+        if (c > may)
+            may = c;
+        if (d > may)
+            may = d;
+        return may;
+    }
+
+    // 1
+    public static int mayorAux(int a, int b, int c) {
+        int may = a;
+        if (b > a)
+            may = b;
+        if (b > may)
+            may = b;
+        if (c > may)
+            may = c;
+        return may;
+    }
+
+    public static int mayorAnd(int a, int b, int c, int d) {
+        int may = 0;
+        if (a > b && a > c && a > d)
+            may = a;
+        if (b > a && b > c && b > d)
+            may = b;
+        if (c > a && c > b && c > d)
+            may = c;
+        if (d > a && d > b && d > c)
+            may = d;
+        return may;
+    }
+
+    public static int mayorDep(int a, int b, int c, int d) {
+        return (mayor(mayor(a, b), mayor(c, d)));
+    }
+
+    public static int segMayor(int a, int b, int c) {
+        int sm = 0;
+        int m = mayor(a, mayor(b, c));
+        if (m == a)
+            sm = mayor(b, c);
+        if (m == b)
+            sm = mayor(a, c);
+        if (m == c)
+            sm = mayor(b, a);
+        return sm;
+    }
+
+    public static int segMayor(int a, int b, int c, int d) {
+        int sm = 0;
+        int m = mayor(mayor(a, b), mayor(b, c));
+        if (m == a)
+            sm = mayorAux(b, c, d);
+        if (m == b)
+            sm = mayorAux(a, c, d);
+        if (m == c)
+            sm = mayorAux(b, a, d);
+        if (m == d)
+            sm = mayorAux(b, c, a);
+        return sm;
+    }
+
+    public static int segMenor(int a, int b, int c) {
+        int sm = 0;
+        int m = menor(a, menor(b, c));
+        if (m == a)
+            sm = menor(b, c);
+        if (m == b)
+            sm = menor(a, c);
+        if (m == c)
+            sm = menor(b, a);
+        return sm;
+    }
+
+    public static int tercMayor(int a, int b, int c, int d) {
+        int sm = 0;
+        int m = mayor(mayor(a, b), mayor(b, c));
+        if (m == a)
+            sm = segMayor(b, c, d);
+        if (m == b)
+            sm = segMayor(a, c, d);
+        if (m == c)
+            sm = segMayor(b, a, d);
+        if (m == d)
+            sm = segMayor(b, c, a);
+        return sm;
+    }
+
+    public static int tercMenor(int a, int b, int c, int d) {
+        int sm = 0;
+        int m = mayor(mayor(a, b), mayor(b, c));
+        if (m == a)
+            sm = mayor(mayor(d, b), c);
+        if (m == b)
+            sm = mayor(mayor(a, d), c);
+        if (m == c)
+            sm = mayor(mayor(a, b), d);
+        if (m == d)
+            sm = mayor(mayor(a, b), c);
+        return sm;
+    }
