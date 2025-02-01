@@ -1,0 +1,152 @@
+public static void main(String[] args) {
+        System.out.println(existePar(1,2,3,5));
+        System.out.println(alterno(1,2,3,4));
+        System.out.println(palindrome(2, 5, 6, 5, 2));
+        System.out.println(todosPares(1,2,3,5));
+        System.out.println(parImpar(1,2,3,5));
+
+        mostrarDivisores(10);
+        mostrarDivisoresPares(10);
+        System.out.println(contarDivisores(10));
+        System.out.println(contarDivisores(10,2,9));
+        divisoresComunes(20, 10);
+
+        System.out.println(sumaDigitos(154));
+        System.out.println(contarDigitos(155));
+        System.out.println(existePar(154));
+        System.out.println(frecuencia(22525, 2));
+        System.out.println(parImpar(154));
+        
+
+    }
+
+    public static boolean par(int n) {
+        return n % 2 == 0;
+    }
+
+    public static boolean impar(int n) {
+        return n % 2 != 0;
+    }
+
+    public static boolean existePar(int a, int b, int c, int d) {
+        return par(a) || par(b) || par(c) || par(d);
+    }
+
+    public static boolean alterno(int a, int b, int c, int d) {
+        return par(a) && impar(b) && par(c) && impar(d) ||
+                impar(a) && par(b) && impar(c) && par(d);
+    }
+
+    public static boolean palindrome(int a, int b, int c, int d, int e)
+
+    {
+        return a == e && b == d;
+    }
+
+    public static boolean todosPares(int a, int b, int c, int d) {
+        return par(a) && par(b) && par(c) && par(d);
+    }
+
+    public static boolean parImpar(int a, int b, int c, int d) {
+        int im = 0, pa = 0;
+        if (par(a) || par(b) || par(c) || par(d))
+            pa++;
+        if (impar(a) || impar(b) || impar(c) || impar(d))
+            im++;
+        return pa >= 1 && im >= 1;
+    }
+
+    //
+    public static void mostrarDivisores(int n) {
+        for (int i = 1; i <= n; i++)
+            if (n % i == 0)
+                System.out.println(i);
+    }
+
+    public static void mostrarDivisoresPares(int n) {
+        for (int i = 1; i <= n; i++)
+            if (n % i == 0 && i % 2 == 0)
+                System.out.println(i);
+    }
+
+    public static int contarDivisores(int n) {
+        int c = 0;
+        for (int i = 1; i <= n; i++)
+            if (n % i == 0)
+                c++;
+        return c;
+    }
+
+    public static int contarDivisores(int n, int a, int b) {
+        int c = 0;
+        for (int i = a; i <= b; i++)
+            if (n % i == 0)
+                c++;
+        return c;
+    }
+
+    public static void divisoresComunes(int n, int m) {
+        int i = 1;
+        int lim = Math.min(n, m);
+        while (i <= lim) {
+            if (n % i == 0 && m % i == 0) {
+                System.out.println(i);
+            }
+            i++;
+        }
+    }
+
+    //
+    public static int sumaDigitos(int n) {
+        int n1 = n;
+        int s = 0;
+        while (n1 > 0) {
+            s = s + (n1 % 10);
+            n1 = n1 / 10;
+        }
+        return s;
+    }
+
+    public static int contarDigitos(int n) {
+        int n1 = n;
+        int c = 0;
+        while (n1 > 0) {
+            c++;
+            n1 = n1 / 10;
+        }
+        return c;
+    }
+
+    public static boolean existePar(int n) {
+        int n1 = n;
+        while (n1 > 0) {
+            if(par(n1 % 10))
+                return true;
+            n1 = n1 / 10;
+        }
+        return false;
+    }
+
+    public static int frecuencia(int n, int dig) {
+        int n1 = n;
+        int f = 0;
+        while (n1 > 0) {
+            if((n1 % 10) == dig)
+                f++;
+            n1 = n1 / 10;
+        }
+        return f;
+    }
+
+    public static boolean parImpar(int n) {
+        int n1 = n;
+        int pa = 0, im = 0;
+        while (n1 > 0) {
+            if(par(n1 % 10))
+                pa++;
+            if(impar(n1 % 10))
+                im++;
+            n1 = n1 / 10;
+        }
+        return pa >= 1 && im >= 1;
+    }
